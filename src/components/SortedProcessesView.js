@@ -5,23 +5,25 @@ import {
   FIRST_FIT,
   BEST_FIT,
   WORST_FIT,
-  PROCESS_VIEW_HEIGHT
+  PROCESS_VIEW_HEIGHT,
+  EXPANDED_PROCESS_VIEW_HEIGHT
 } from '../helpers/constants';
 
 import segmentProcessesAndHoles from '../core/segment';
 
 export default function SortedProcesses(props) {
 
-  const height = useRef(PROCESS_VIEW_HEIGHT);
+  const [height, setHeight] = useState(PROCESS_VIEW_HEIGHT)
+  // const height = useRef(PROCESS_VIEW_HEIGHT);
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [segments, setSegments] = useState([]);
-
+  
   useEffect(() => {
     if (selectedOption) {
       const [allocationResult, newSegments] = segmentProcessesAndHoles(
         props.memorySize,
-        height.current,
+        height,
         props.processes,
         props.holes,
         selectedOption.value
@@ -33,13 +35,12 @@ export default function SortedProcesses(props) {
       setSegments(newSegments);
     }
   }, [
+    height,
     selectedOption,
     props.memorySize,
     props.processes,
     props.holes
   ]);
-
-  useEffect(() => {}, [segments]);
   
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -56,9 +57,10 @@ export default function SortedProcesses(props) {
       ]}
       placeholder="Allocation Method..."
     />
-    <div className="bg-danger mt-2 rounded-top" style={{
+
+    {((selectedOption !== null && segments.length > 0) && <><div className="bg-danger my-2 rounded-top" style={{
       position: 'relative',
-      height: `${height.current}px`
+      height: `${height}px`
     }}>
       {segments.map((segment, i) => (
         <SortedSegmentView
@@ -71,5 +73,19 @@ export default function SortedProcesses(props) {
         />
       ))}
     </div>
+    <div
+      onClick={() => {
+        if (height === PROCESS_VIEW_HEIGHT) {
+          setHeight(EXPANDED_PROCESS_VIEW_HEIGHT);
+        } else {
+          setHeight(PROCESS_VIEW_HEIGHT);
+        }
+      }}
+    >
+      <i
+        style={{width: '100%', cursor: 'pointer'}}
+        className={'fas fa-arrow-' + (height === PROCESS_VIEW_HEIGHT ? 'down' : 'up')}
+      ></i>
+    </div></>)}
   </>)
 }
