@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ModifyProcessColumn from './ModifyProcessColumn';
 import InsertedDataView from './InsertedDataView';
+import SortedProcessesView from './SortedProcessesView';
 
-export default function Main() {
+export default function AppContainer() {
   
   const [memorySizeInputValue, setMemorySizeInputValue] = useState('2');
   const [memorySize, setMemorySize] = useState(0);
@@ -17,14 +18,6 @@ export default function Main() {
   const autoFocusCallbackRef = useCallback(inputElement => {
     if (inputElement) inputElement.focus();
   }, []);
-
-  // const startingAddressCallbackRef = useCallback(inputElement => {
-  //   if (inputElement) inputElement.focus();
-  // }, []);
-
-  useEffect(() => {
-    // console.log(holes);
-  }, [holes]);
   
   const submitMemorySize = () => {
     let parsedMemorySize = parseInt(memorySizeInputValue);
@@ -185,13 +178,22 @@ export default function Main() {
           />
         </div>
         <div className="mt-4 col-6 col-md-4">
-          <InsertedDataView
-            memorySize={memorySize}
-            holes={holes}
-            processes={processes}
-            selectedProcessIndex={currentProcessIndex}
-            selectProcess={(processIndex) => {setCurrentProcessIndex(processIndex)}}
-          />
+          <div className="mb-2">
+            <InsertedDataView
+              memorySize={memorySize}
+              holes={holes}
+              processes={processes}
+              selectedProcessIndex={currentProcessIndex}
+              selectProcess={(processIndex) => {setCurrentProcessIndex(processIndex)}}
+            />
+          </div>
+          <div className="mt-2">
+            <SortedProcessesView
+              memorySize={memorySize}
+              processes={processes}
+              holes={holes}
+            />
+          </div>
         </div>
       </div>
     </>

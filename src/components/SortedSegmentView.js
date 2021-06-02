@@ -12,9 +12,10 @@ export default function SortedSegment(props) {
 
   return (
     <div className={
-        (props.type === OLD_PROCESS && "bg-warning") ||
+        ((props.type === OLD_PROCESS && "bg-warning") ||
         (props.type === HOLE && "bg-success") ||
-        (props.type === NEW_PROCESS && "bg-primary")
+        (props.type === NEW_PROCESS && "bg-primary")) + 
+        props.index === 0 && " rounded-top"
       } style={{
         position: 'absolute',
         top: `${props.start}px`,

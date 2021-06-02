@@ -5,3 +5,5 @@ export const WORST_FIT = 'WORST_FIT';
 export const OLD_PROCESS = 'OLD_PROCESS';
 export const HOLE = 'HOLE';
 export const NEW_PROCESS = 'NEW_PROCESS';
+
+export const PROCESS_VIEW_HEIGHT = 500;

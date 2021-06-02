@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SortedProcessesView from './SortedProcessesView';
 
 export default function ShowProcesses(props) {
 
@@ -62,12 +61,6 @@ export default function ShowProcesses(props) {
         </div>
       </div>
     </div>))}
-
-    <SortedProcessesView
-      memorySize={props.memorySize}
-      processes={props.processes}
-      holes={props.holes}
-    />
   </>)
 }
 

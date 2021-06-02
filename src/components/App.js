@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from './Main';
+import AppContainer from './AppContainer';
 import './App.css';
 
 function App() {
@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <div className="container mw-94 mb-4">
-        <Main />
+        <AppContainer />
       </div>
     </div>
   );

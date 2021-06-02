@@ -1,17 +1,19 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Select from 'react-select';
+import { ResizableBox } from 'react-resizable';
 import SortedSegmentView from './SortedSegmentView';
 import {
   FIRST_FIT,
   BEST_FIT,
-  WORST_FIT
+  WORST_FIT,
+  PROCESS_VIEW_HEIGHT
 } from '../helpers/constants';
 
 import segmentProcessesAndHoles from '../core/segment';
 
 export default function SortedProcesses(props) {
 
-  const maxHeight = useRef(600);
+  const height = useRef(PROCESS_VIEW_HEIGHT);
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [segments, setSegments] = useState([]);
@@ -20,7 +22,7 @@ export default function SortedProcesses(props) {
     if (selectedOption) {
       const [allocationResult, newSegments] = segmentProcessesAndHoles(
         props.memorySize,
-        maxHeight.current,
+        height.current,
         props.processes,
         props.holes,
         selectedOption.value
@@ -38,9 +40,7 @@ export default function SortedProcesses(props) {
     props.holes
   ]);
 
-  useEffect(() => {
-    
-  }, [segments]);
+  useEffect(() => {}, [segments]);
   
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
@@ -57,13 +57,14 @@ export default function SortedProcesses(props) {
       ]}
       placeholder="Allocation Method..."
     />
-    <div className="bg-danger" style={{
+    <div className="bg-danger mt-2 rounded-top" style={{
       position: 'relative',
-      height: `${maxHeight.current}px`
+      height: `${height.current}px`
     }}>
       {segments.map((segment, i) => (
         <SortedSegmentView
           key={i}
+          index={i}
           type={segment.type}
           start={segment.start}
           size={segment.end - segment.start}
