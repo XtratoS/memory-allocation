@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Select from 'react-select';
-import { ResizableBox } from 'react-resizable';
 import SortedSegmentView from './SortedSegmentView';
 import {
   FIRST_FIT,
