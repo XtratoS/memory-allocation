@@ -112,6 +112,8 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
       if (processAllocationResult === true) {
         holeSegments = JSON.parse(JSON.stringify(updatedHoles));
         newSegments = JSON.parse(JSON.stringify(updatedSegments));
+      } else {
+        result[0] = false;
       }
     }
   }
@@ -172,6 +174,8 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
       if (processAllocationResult === true) {
         holeSegments = JSON.parse(JSON.stringify(updatedHoles));
         newSegments = JSON.parse(JSON.stringify(updatedSegments));
+      } else {
+        result[0] = false;
       }
     }
   }
@@ -232,6 +236,8 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
       if (processAllocationResult === true) {
         holeSegments = JSON.parse(JSON.stringify(updatedHoles));
         newSegments = JSON.parse(JSON.stringify(updatedSegments));
+      } else {
+        result[0] = true;
       }
     }
   }
