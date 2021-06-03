@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import SortedSegmentView from './SortedSegmentView';
 import {
@@ -13,8 +13,7 @@ import segmentProcessesAndHoles from '../core/segment';
 
 export default function SortedProcesses(props) {
 
-  const [height, setHeight] = useState(PROCESS_VIEW_HEIGHT)
-  // const height = useRef(PROCESS_VIEW_HEIGHT);
+  const [height, setHeight] = useState(PROCESS_VIEW_HEIGHT);
 
   const [selectedOption, setSelectedOption] = useState(null);
   const [segments, setSegments] = useState([]);
@@ -55,12 +54,23 @@ export default function SortedProcesses(props) {
         {value: BEST_FIT, label: 'Best Fit'},
         {value: WORST_FIT, label: 'Worst Fit'}
       ]}
+      styles={{
+        option: (provided) => ({
+          ...provided,
+          color: 'black'
+        }),
+        menu: (provided) => ({
+          ...provided,
+          marginTop: 2
+        })
+      }}
       placeholder="Allocation Method..."
     />
 
-    {((selectedOption !== null && segments.length > 0) && <><div className="bg-danger my-2 rounded-top" style={{
+    {((selectedOption !== null && segments.length > 0) && <><div className="my-2 rounded-top" style={{
       position: 'relative',
-      height: `${height}px`
+      height: `${height}px`,
+      transition: '.5s'
     }}>
       {segments.map((segment, i) => (
         <SortedSegmentView
@@ -70,6 +80,7 @@ export default function SortedProcesses(props) {
           start={segment.start}
           size={segment.end - segment.start}
           text={segment.name}
+          style={{transition: '.5s'}}
         />
       ))}
     </div>

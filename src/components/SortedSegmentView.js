@@ -15,6 +15,7 @@ export default function SortedSegment(props) {
           +
         props.index === 0 ? 'rounded-top' : ''
       } style={{
+        ...props.style,
         position: 'absolute',
         top: `${props.start}px`,
         width: '100%',
