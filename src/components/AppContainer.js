@@ -158,6 +158,12 @@ export default function AppContainer() {
                 if (parseInt(event.target.value) < 1) return false;
                 setHoleSize(event.target.value)
               }}
+              onKeyUp={(event) => {
+                if (event.key === 'Enter') {
+                  event.preventDefault();
+                  submitHole();
+                }
+              }}
             />
           </div>
           <button
