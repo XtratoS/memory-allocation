@@ -1,19 +1,19 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, Menu, MenuItem, dialog } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 
 require('@electron/remote/main').initialize();
 
 function createWindow() {
-  const win = new BrowserWindow({
+  const window = new BrowserWindow({
     width: 960,
-    height: 600,
+    height: 720,
     webPreferences: {
       enableRemoteModule: true
     }
   })
 
-  win.loadURL(
+  window.loadURL(
     isDev
     ? 'http://localhost:3000'
     : `file://${path.join(__dirname, '../build/index.html')}`
