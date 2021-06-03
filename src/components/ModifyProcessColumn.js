@@ -61,7 +61,12 @@ export default function ModifyProcessColumn(props) {
           type="text"
           value={tempProcessName}
           onChange={(event) => {setTempProcessName(event.target.value)}}
-          // TODO ON ENTER SUBMIT
+          onKeyUp={(event) => {
+            if (event.key === 'Enter') {
+              event.preventDefault();
+              submitProcess();
+            }
+          }}
           disabled={props.holeCount === 0}
         />
         <button
