@@ -12,7 +12,7 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
   let holeSegments = [];
   let oldProcesses = [];
   let newSegments = [];
-  let result = [true, []];
+  let result = [true, [], []];
 
   // Create segments
   processes.forEach((process, processIndex) => {
@@ -111,6 +111,7 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
         }
         if (segmentAllocationResult === false) {
           processAllocationResult = false;
+          result[2].push(process.name);
           break;
         }
       }
@@ -159,6 +160,7 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
 
         if (segmentAllocationResult === false) {
           processAllocationResult = false;
+          result[2].push(process.name);
           break;
         }
         let bestFitHole = updatedHoles[bestFitSegmentIndex];
@@ -221,8 +223,10 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
 
         if (segmentAllocationResult === false) {
           processAllocationResult = false;
+          result[2].push(process.name);
           break;
         }
+
         let worstFitHole = updatedHoles[worstFitSegmentIndex];
         let worstFitHoleSize = worstFitHole.end - worstFitHole.start;
         updatedSegments.push({
@@ -243,7 +247,7 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
         holeSegments = JSON.parse(JSON.stringify(updatedHoles));
         newSegments = JSON.parse(JSON.stringify(updatedSegments));
       } else {
-        result[0] = true;
+        result[0] = false;
       }
     }
   }

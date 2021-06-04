@@ -20,7 +20,7 @@ export default function SortedProcesses(props) {
   
   useEffect(() => {
     if (selectedOption) {
-      const [allocationResult, newSegments] = segmentProcessesAndHoles(
+      const [allocationResult, newSegments, failtureNames] = segmentProcessesAndHoles(
         props.memorySize,
         height,
         props.processes,
@@ -28,8 +28,11 @@ export default function SortedProcesses(props) {
         selectedOption.value
       );
       if (allocationResult === false) {
-        alert(`Failed to allocate processes to memory`);
-        return;
+        let failtureString = '';
+        failtureNames.forEach(name => {
+          failtureString += name + ' ';
+        })
+        alert(`Failed to allocate process(es); ${failtureString}to memory`);
       }
       setSegments(newSegments);
     }
