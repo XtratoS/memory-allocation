@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import ReactTooltip from 'react-tooltip';
+import InsertHoleColumn from './InsertHoleColumn';
 import ModifyProcessColumn from './ModifyProcessColumn';
 import InsertedDataView from './InsertedDataView';
 import SortedProcessesView from './SortedProcessesView';
@@ -32,15 +34,8 @@ export default function AppContainer() {
     setHoles(newHoles);
   }
 
-  const submitHole = () => {
-    let parsedHoleStart = parseInt(holeStartAddress);
-    let parsedHoleSize = parseInt(holeSize);
-
-    if (isNaN(parsedHoleStart) || isNaN(parsedHoleSize)) {
-      alert(`You must insert a valid hole parameters`);
-      return false;
-    }
-
+  const submitHole = (parsedHoleStart, parsedHoleSize) => {
+    
     if (parsedHoleStart + parsedHoleSize > memorySize) {
       alert(`A hole can't extend outside memory`);
       return false;
@@ -57,6 +52,7 @@ export default function AppContainer() {
         overlap = [_holeStart, _holeSize];
       }
     });
+
     if (overlap != null) {
       alert(`Hole overlaps with hole starting at ${overlap[0]} with size ${overlap[1]}`);
       return false;
@@ -65,10 +61,7 @@ export default function AppContainer() {
     let hole = [parsedHoleStart, parsedHoleSize];
 
     insertHole(hole);
-
-    // empty the textboxes
-    setHoleStartAddress('');
-    setHoleSize('');
+    return true;
   }
 
   const updateCurrentProcess = (newProcess) => {
@@ -125,59 +118,23 @@ export default function AppContainer() {
   return (
     <>
       <div className="row m-0 text-center justify-content-center">
-        <div className="mt-4 col-6 col-md-4">
-          <div className="h3">Insert Hole</div>
-          <div className="my-4">
-            <label
-              className="form-label"
-              htmlFor="holeStart"
-            >
-              Starting Address
-            </label>
-            <input
-              id="holeStart"
-              className="form-control"
-              type="number"
-              min={0}
-              value={holeStartAddress}
-              ref={autoFocusCallbackRef}
-              onChange={(event) => {
-                if (parseInt(event.target.value) < 0) return false;
-                setHoleStartAddress(event.target.value)
-              }}
-            />
+        <div className="mt-4 p-0 col-1 d-flex justify-content-center align-items-start">
+          <ReactTooltip backgroundColor='#dc3545'/>
+          <div data-tip='Memory Size'>
+            <i className="fas fa-sd-card"></i>
+            <br/>
+            {
+            memorySize <= 10000 ? memorySize + ' B' :
+              memorySize <= 10000000 ? Math.floor(memorySize/1024) + ' KB' :
+                memorySize <= 10000000000 ? Math.floor(memorySize/1024/1024) + ' MB' :
+                  Math.floor(memorySize/1024/1024/1024) + ' GB'
+            }
           </div>
-          <div className="mb-4">
-            <label
-              className="form-label"
-              htmlFor="holeSize"
-            >
-              Size
-            </label>
-            <input
-              id="holeSize"
-              className="form-control"
-              type="number"
-              min={1}
-              value={holeSize}
-              onChange={(event) => {
-                if (parseInt(event.target.value) < 1) return false;
-                setHoleSize(event.target.value)
-              }}
-              onKeyUp={(event) => {
-                if (event.key === 'Enter') {
-                  event.preventDefault();
-                  submitHole();
-                }
-              }}
-            />
-          </div>
-          <button
-            className="btn btn-primary"
-            onClick={submitHole}
-          >
-            Insert Hole
-          </button>
+        </div>
+        <div className="mt-4 col-5 col-md-3">
+          <InsertHoleColumn
+            submitHole={submitHole}
+          />
         </div>
         <div className="mt-4 col-6 col-md-4">
           <ModifyProcessColumn
