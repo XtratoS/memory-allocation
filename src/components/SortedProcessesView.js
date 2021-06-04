@@ -66,43 +66,45 @@ export default function SortedProcesses(props) {
       placeholder="Allocation Method..."
     />
 
-    {((selectedOption !== null && segments.length > 0) && <><div className="my-2 rounded-top" style={{
-      position: 'relative',
-      height: `${height}px`,
-      transition: '.5s'
-    }}>
-      {segments.map((segment, i) => (
-        <SortedSegmentView
-          key={i}
-          index={i}
-          deallocateSelf={() => {
-            let segmentStart = segment.unfactoredStart
-            let segmentSize = segment.unfactoredSize;
-            let newHole = [segmentStart, segmentSize];
-            console.log(segment);
-            props.insertHole(newHole);
-          }}
-          type={segment.type}
-          start={segment.start}
-          size={segment.end - segment.start}
-          text={segment.name}
-          style={{transition: '.5s'}}
-        />
-      ))}
-    </div>
-    <div
-      onClick={() => {
-        if (height === PROCESS_VIEW_HEIGHT) {
-          setHeight(EXPANDED_PROCESS_VIEW_HEIGHT);
-        } else {
-          setHeight(PROCESS_VIEW_HEIGHT);
-        }
-      }}
-    >
-      <i
-        style={{width: '100%', cursor: 'pointer'}}
-        className={'fas fa-arrow-' + (height === PROCESS_VIEW_HEIGHT ? 'down' : 'up')}
-      ></i>
-    </div></>)}
+    {((selectedOption !== null && segments.length > 0) && <>
+      <div className="my-2 rounded-top" style={{
+        position: 'relative',
+        height: `${height}px`,
+        transition: '.5s'
+      }}>
+        {segments.map((segment, i) => (
+          <SortedSegmentView
+            key={i}
+            index={i}
+            deallocateSelf={() => {
+              let segmentStart = segment.unfactoredStart
+              let segmentSize = segment.unfactoredSize;
+              let newHole = [segmentStart, segmentSize];
+              console.log(segment);
+              props.insertHole(newHole);
+            }}
+            type={segment.type}
+            start={segment.start}
+            size={segment.end - segment.start}
+            text={segment.name}
+            style={{transition: '.5s'}}
+          />
+        ))}
+      </div>
+      <div
+        onClick={() => {
+          if (height === PROCESS_VIEW_HEIGHT) {
+            setHeight(EXPANDED_PROCESS_VIEW_HEIGHT);
+          } else {
+            setHeight(PROCESS_VIEW_HEIGHT);
+          }
+        }}
+      >
+        <i
+          style={{width: '100%', cursor: 'pointer'}}
+          className={'fas fa-arrow-' + (height === PROCESS_VIEW_HEIGHT ? 'down' : 'up')}
+        ></i>
+      </div>
+    </>)}
   </>)
 }
