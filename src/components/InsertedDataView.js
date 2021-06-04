@@ -67,7 +67,7 @@ export default function ShowProcesses(props) {
     >
       {props.processes.map((process, index) => (<div
         key={k++}
-        className={`border border-1 rounded border-secondary ${props.selectedProcessIndex === index && 'bg-warning'}`}
+        className={`border border-1 rounded border-secondary ${props.selectedProcessIndex === index && 'border-light bg-secondary'}`}
         onClick={() => {props.selectProcess(index)}}
         style={{cursor: 'pointer'}}
       >
@@ -76,9 +76,9 @@ export default function ShowProcesses(props) {
             {process.name || <div className="fs-italic">Unnamed Process</div>}
           </div>
         </div>
-        <div className="row m-0 p-0 border-top border-1 border-secondary">
+        <div className="row m-0 p-0">
           <div className="col">
-            # Segments: {process.segments.length}
+            {process.segments.length} Segments
           </div>
         </div>
       </div>))}

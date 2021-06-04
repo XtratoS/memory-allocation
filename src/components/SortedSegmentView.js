@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import {
   OLD_PROCESS,
   HOLE,
@@ -9,11 +10,10 @@ export default function SortedSegment(props) {
 
   return (
     <div className={
-        props.type === OLD_PROCESS ? 'bg-warning' :
-        props.type === HOLE ? 'bg-success' :
-        props.type === NEW_PROCESS ? 'bg-primary' : ''
-          +
-        props.index === 0 ? 'rounded-top' : ''
+        `${'m-0 p-0 row text-center justify-content-center align-items-center '
+        }${props.type === OLD_PROCESS ? ' bg-warning text-dark ' : ''
+        }${props.type === HOLE ? 'bg-success' : ''
+        }${props.type === NEW_PROCESS ? 'bg-primary' : ''}`
       } style={{
         ...props.style,
         position: 'absolute',
@@ -23,9 +23,29 @@ export default function SortedSegment(props) {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        fontWeight: 'bold',
+        fontWeight: 'bold'
       }}>
-        {props.text}
+        <div className='col' style={{position: 'relative'}}>
+          <span>{props.text}</span>
+          <ReactTooltip
+            backgroundColor='#dc3545'
+          />
+          {props.type === OLD_PROCESS &&
+            <span
+              data-tip='De-allocate'
+              style={{
+                position: 'absolute',
+                right: 10
+              }}
+              onClick={() => {
+                props.deallocateSelf();
+              }}
+            >
+              <i
+                className='fas fa-minus-circle text-danger'
+              ></i>
+          </span>}
+        </div>
     </div>
   )
 }

@@ -76,6 +76,13 @@ export default function SortedProcesses(props) {
         <SortedSegmentView
           key={i}
           index={i}
+          deallocateSelf={() => {
+            let segmentStart = segment.unfactoredStart
+            let segmentSize = segment.unfactoredSize;
+            let newHole = [segmentStart, segmentSize];
+            console.log(segment);
+            props.insertHole(newHole);
+          }}
           type={segment.type}
           start={segment.start}
           size={segment.end - segment.start}
