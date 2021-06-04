@@ -36,7 +36,7 @@ export default function ModifyProcessColumn(props) {
   }
 
   return (<>
-    <div className="h3">Insert/Modify Process</div>
+    <div className="h4">Insert/Modify Process</div>
     <div className="my-4">
       <div>
       <button className="mb-3 mx-1 btn btn-primary" onClick={() => {
@@ -46,7 +46,7 @@ export default function ModifyProcessColumn(props) {
         <button className="mb-3 mx-1 btn btn-danger" onClick={() => {
           props.removeProcess();
           // setTempProcessName(props.process.name);
-        }} disabled={props.processCount <= 1}>Remove Process</button>
+        }} disabled={props.processCount <= 1}>Deallocate Process</button>
       </div>
       <label
         className="form-label"

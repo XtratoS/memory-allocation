@@ -19,7 +19,7 @@ export default function SortedProcesses(props) {
   const [segments, setSegments] = useState([]);
   
   useEffect(() => {
-    if (selectedOption) {
+    if (selectedOption !== null) {
       const [allocationResult, newSegments, failtures] = segmentProcessesAndHoles(
         props.memorySize,
         height,
@@ -34,7 +34,12 @@ export default function SortedProcesses(props) {
     }
   }, [
     height,
-    selectedOption,
+    selectedOption
+  ]);
+
+  useEffect(() => {
+    setSelectedOption(null);
+  }, [
     props.memorySize,
     props.processes,
     props.holes
