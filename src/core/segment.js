@@ -45,7 +45,9 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
         type: OLD_PROCESS,
         name: 'Old Process',
         start: previousSegment.end,
-        end: segment.start
+        end: segment.start,
+        unfactoredStart: previousSegment.end,
+        unfactoredSize: segment.start - previousSegment.end
       });
     }
   }
@@ -57,7 +59,9 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
       type: OLD_PROCESS,
       name: 'Old Process',
       start: 0,
-      end: firstSegment.start
+      end: firstSegment.start,
+      unfactoredStart: 0,
+      unfactoredSize: firstSegment.start,
     });
   }
 
@@ -68,7 +72,9 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
       type: OLD_PROCESS,
       name: 'Old Process',
       start: lastSegment.end,
-      end: memorySize
+      end: memorySize,
+      unfactoredStart: lastSegment.end,
+      unfactoredSize: memorySize - lastSegment.end,
     });
   }
 
