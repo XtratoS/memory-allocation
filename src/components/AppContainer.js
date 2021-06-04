@@ -26,6 +26,12 @@ export default function AppContainer() {
     }
   }
 
+  const insertHole = (hole) => {
+    // add the new hole to the holes array
+    let newHoles = [...holes, hole];
+    setHoles(newHoles);
+  }
+
   const submitHole = () => {
     let parsedHoleStart = parseInt(holeStartAddress);
     let parsedHoleSize = parseInt(holeSize);
@@ -57,9 +63,9 @@ export default function AppContainer() {
     }
 
     let hole = [parsedHoleStart, parsedHoleSize];
-    // add the new hole to the holes array
-    let newHoles = [...holes, hole];
-    setHoles(newHoles);
+
+    insertHole(hole);
+
     // empty the textboxes
     setHoleStartAddress('');
     setHoleSize('');
@@ -195,6 +201,7 @@ export default function AppContainer() {
           </div>
           <div className="mt-2">
             <SortedProcessesView
+              insertHole={insertHole}
               memorySize={memorySize}
               processes={processes}
               holes={holes}
