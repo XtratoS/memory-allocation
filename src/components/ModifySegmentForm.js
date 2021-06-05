@@ -9,6 +9,17 @@ export default function Segment(props) {
     setSize(props.segment.size);
   }, [props.segment]);
 
+  const saveSegment = () => {
+    if (name === '' || size === '') {
+      alert(`Invalid values for segment parameters`)
+      return;
+    }
+    props.setSegment({
+      name,
+      size: parseInt(size)
+    })
+  }
+
   return (<>
     <div className="input-group row m-auto mt-3">
       <div className="col">
@@ -40,6 +51,11 @@ export default function Segment(props) {
           min={1}
           value={size}
           onChange={(event) => {setSize(event.target.value)}}
+          onKeyUp={(event) => {
+            if (event.key === 'Enter') {
+              saveSegment();
+            }
+          }}
         />
       </div>
     </div>
@@ -47,11 +63,7 @@ export default function Segment(props) {
       <div className="col input-group justify-content-between">
         <button
           className="mt-1 btn btn-success w-80"
-          onClick={() => {
-            props.setSegment({
-              name,
-              size: parseInt(size)
-            })}}
+          onClick={saveSegment}
         >
           Save Segment
         </button>
