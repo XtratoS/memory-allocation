@@ -1,6 +1,6 @@
 # What is this?
-- This is a Desktop Application - which can be also treated as a web application since its core is written in React - that's built using Electron.
-- This application shows the implementation of different memory allocation methods, namely; First Fit, Best Fit and Worst Fit.
+- This is a Desktop Application - which can be also treated as a web application since its core is written in **React** - that's built using **Electron**.
+- This application shows the implementation of different memory allocation methods, namely; **First Fit**, **Best Fit** and **Worst Fit**.
 
 # How to use it?
 ## Hosting the application
@@ -16,7 +16,7 @@
   4. Run the application from the executable created in `/dist`.
 
 ## Using the application
-1. On the first page, we input the size of the memory in bytes, then we hit enter or press on Submit button
+1. On the first page, we input the size of the memory in bytes, then we hit enter or press on Submit button.
 2. On the second page, we first insert the holes, when holes overlap you will recieve an error message, also when any new hole is inserted, it is shown on the rightmost column.
 3. After inserting the holes, the Add Process button will be enabled.
 4. Note that the system inserts the first process for us by default, so we type the process name and click on Save beside the process name text box.
@@ -34,6 +34,9 @@ Added Worst Fit Option.
 Error checking:
 - User can't insert overlapping holes.
 - User can't insert a negative size for the memory, a hole or a segment.
+- User can't insert a hole that's outside the memory's boundary.
+
+# Other Features
 Live Modification:
 - User can switch between different Allocation Methods at any time.
 - User can add holes at any time.
