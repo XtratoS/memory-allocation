@@ -93,14 +93,18 @@ export default function AppContainer() {
   if (memorySize === 0) {
     return (
       <div className="m-4">
-        <label htmlFor="memorySizeInput" className="form-label mb-4 mw-80px">Memory Size (in bytes)</label>
+        <label htmlFor="memorySizeInput" className="form-label mb-4 mw-80px">
+          Memory Size (in bytes)
+        </label>
         <input
           id="memorySizeInput"
           className="form-control m-auto mb-4 mw-80px w-60"
           type="number" 
           ref={autoFocusCallbackRef}
           value={memorySizeInputValue}
-          onChange={(event) => {setMemorySizeInputValue(event.target.value)}}
+          onChange={(event) => {
+            setMemorySizeInputValue(event.target.value);
+          }}
           onKeyUp={(event) => {
             if (event.key === 'Enter') {
               event.preventDefault();
