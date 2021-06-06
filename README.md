@@ -8,6 +8,7 @@
   https://xtratos.github.io/memory-allocation/
 - Using the desktop application
   Download the .exe file from releases
+  https://github.com/XtratoS/memory-allocation/releases/download/v1.0.0/memory-alloc.exe
 
 - To build the application on your machine
   1. Clone the repository.
