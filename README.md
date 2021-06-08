@@ -13,7 +13,7 @@
 - To build the application on your machine
   1. Clone the repository.
   2. Use `npm install` to install dependancies.
-  3. Use `yarn electron:build` to build the application.
+  3. Use `yarn electron:build` to build the application for your platform, or `yarn electron:build-win` to build for Windows while using Linux.
   4. Run the application from the executable created in `/dist`.
 
 ## Using the application
