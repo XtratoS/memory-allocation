@@ -39,12 +39,12 @@
 - User can apply **External Compaction** by pressing the **Squash All Holes Together** button.
 
 # Other Features
-Live Modification:
-- User can switch between different Allocation Methods at any time.
-- User can add holes at any time.
-- User can add Processes and Segments and Remove them at any time.
-- When deallocating a process, all segments are automatically reallocated.
-Output View:
-- The output view of the memory size is scaled to a 480 pixels by default.
-- The output view can be expanded to 960 pixels and contracted back to 480 pixels on demand.
-When one or more process(es) allocation fails, the user is alerted with the failed process(es).
+- Live Modification:
+  - User can switch between different Allocation Methods at any time.
+  - User can add holes at any time.
+  - User can add Processes and Segments and Remove them at any time.
+  - When deallocating a process, all segments are automatically reallocated.
+- Output View:
+  - The output view of the memory is scaled to a 480 pixels by default.
+  - The output view can be expanded to 960 pixels and contracted back to 480 pixels on demand.
+- When one or more process(es) allocation fails, the user is alerted with the failed process(es).
