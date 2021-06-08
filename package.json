@@ -2,6 +2,8 @@
   "name": "memory-alloc",
   "version": "1.0.0",
   "private": true,
+  "author": "XtratoS",
+  "description": "This project demonstrates memory allocation methods",
   "dependencies": {
     "@electron/remote": "^1.1.0",
     "@testing-library/jest-dom": "^5.11.4",
@@ -33,6 +35,7 @@
     "eject": "react-scripts eject",
     "electron:serve": "concurrently -k \"cross-env Browser=none yarn start\" \"yarn electron:start\"",
     "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:build-win": "yarn build && electron-builder -c.extraMetadata.main=build/main.js -w portable",
     "electron:start": "wait-on tcp:3000 && electron ."
   },
   "build": {
@@ -46,6 +49,9 @@
     ],
     "directories": {
       "buildResources": "assets"
+    },
+    "win": {
+      "icon": "build/icon.png"
     }
   },
   "eslintConfig": {
