@@ -45,6 +45,10 @@
   - User can add Processes and Segments and Remove them at any time.
   - When deallocating a process, all segments are automatically reallocated.
 - Output View:
-  - The output view of the memory is scaled to a 480 pixels by default.
+  - The output view of the memory is scaled to 480 pixels by default.
   - The output view can be expanded to 960 pixels and contracted back to 480 pixels on demand.
 - When one or more process(es) allocation fails, the user is alerted with the failed process(es).
+
+# Known Bugs
+*When a bug is fixed it will marked as [x]*
+- [ ] When expanding or contracting the segment view column, if one or more processes couldn't be allocated, the error message will appear again.
