@@ -88,6 +88,7 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
       let process = processes[i];
 
       for (let j=0; j<process.segments.length; j++) {
+        segmentAllocationResult = false;
         let segment = process.segments[j];
         let segmentSize = segment.size;
         for (let k=0; k<updatedHoles.length; k++) {
@@ -109,6 +110,7 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
             break;
           }
         }
+
         if (segmentAllocationResult === false) {
           processAllocationResult = false;
           result[2].push(process.name);
@@ -259,8 +261,6 @@ const segmentProcessesAndHoles = (memorySize, height, processes, holes, sortingM
   }
 
   sortingFunctions[sortingMethod]();
-
-  console.log(oldProcesses, holeSegments, newSegments);
 
   let factor = height / memorySize;
 

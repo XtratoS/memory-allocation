@@ -58,11 +58,6 @@ export default function InsertHoleColumn(props) {
           if (parseInt(event.target.value) < 1) return false;
           setHoleSize(event.target.value);
         }}
-        onKeyUp={(event) => {
-          if (event.key === 'Enter') {
-            submitHole();
-          }
-        }}
       />
     </div>
     <button
@@ -70,6 +65,12 @@ export default function InsertHoleColumn(props) {
       onClick={submitHole}
     >
       Insert Hole
+    </button>
+    <button
+      className="btn btn-success my-4"
+      onClick={props.squashHoles}
+    >
+      Squash All Holes Together
     </button>
   </>)
 }

@@ -34,12 +34,7 @@ export default function SortedProcesses(props) {
     }
   }, [
     height,
-    selectedOption
-  ]);
-
-  useEffect(() => {
-    setSelectedOption(null);
-  }, [
+    selectedOption,
     props.memorySize,
     props.processes,
     props.holes
@@ -85,7 +80,6 @@ export default function SortedProcesses(props) {
               let segmentStart = segment.unfactoredStart
               let segmentSize = segment.unfactoredSize;
               let newHole = [segmentStart, segmentSize];
-              console.log(segment);
               props.insertHole(newHole);
             }}
             type={segment.type}

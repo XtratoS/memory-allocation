@@ -51,11 +51,6 @@ export default function Segment(props) {
           min={1}
           value={size}
           onChange={(event) => {setSize(event.target.value)}}
-          onKeyUp={(event) => {
-            if (event.key === 'Enter') {
-              saveSegment();
-            }
-          }}
         />
       </div>
     </div>

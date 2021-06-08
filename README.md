@@ -36,6 +36,7 @@ Error checking:
 - User can't insert overlapping holes.
 - User can't insert a negative size for the memory, a hole or a segment.
 - User can't insert a hole that's outside the memory's boundary.
+User can apply **External Compaction** by pressing the **Squash All Holes Together** button.
 
 # Other Features
 Live Modification:

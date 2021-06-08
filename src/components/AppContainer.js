@@ -10,9 +10,6 @@ export default function AppContainer() {
   const [memorySizeInputValue, setMemorySizeInputValue] = useState('2');
   const [memorySize, setMemorySize] = useState(0);
 
-  const [holeStartAddress, setHoleStartAddress] = useState('0');
-  const [holeSize, setHoleSize] = useState('1');
-
   const [holes, setHoles] = useState([]);
   const [processes, setProcesses] = useState([{name: '', segments: []}]);
   const [currentProcessIndex, setCurrentProcessIndex] = useState(0);
@@ -64,6 +61,20 @@ export default function AppContainer() {
     return true;
   }
 
+  const squashHoles = () => {
+    if (holes.length < 2) {
+      alert(`The holes are already squashed.`);
+      return;
+    }
+
+    let totalHoleSize = holes.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue[1];
+    }, 0);
+    setHoles([[0, totalHoleSize]]);
+    alert(`Squashed all holes to a single hole of size ${totalHoleSize}`);
+    return;
+  }
+
   const updateCurrentProcess = (newProcess) => {
     let newProcesses = [...processes];
     newProcesses[currentProcessIndex] = newProcess;
@@ -105,12 +116,6 @@ export default function AppContainer() {
           onChange={(event) => {
             setMemorySizeInputValue(event.target.value);
           }}
-          onKeyUp={(event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              submitMemorySize();
-            }
-          }}
         />
         <button className="btn btn-success" onClick={submitMemorySize}>
           Submit
@@ -138,6 +143,7 @@ export default function AppContainer() {
         <div className="mt-4 col-5 col-md-3">
           <InsertHoleColumn
             submitHole={submitHole}
+            squashHoles={squashHoles}
           />
         </div>
         <div className="mt-4 col-6 col-md-4">
